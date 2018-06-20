@@ -32,6 +32,7 @@ export const asyncRegisterUser = ({ username, password, displayName }) => dispat
 };
 
 export const asyncLogin = ({ username, password }) => dispatch => {
+    console.log(`logging in ${username}`);
     fetch( 'https://kwitter-api.herokuapp.com/auth/login', {
         method: "POST",
         headers: new Headers( {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { asyncRegisterUser } from '../actions/auth';
+import { asyncRegisterUser, asyncLogin } from '../actions/auth';
 import { connect } from 'react-redux';
 
 class TestComponent extends React.Component {
@@ -11,15 +11,20 @@ class TestComponent extends React.Component {
         }
     }
 
-    handleClick = () => {
+    handleRegister = () => {
         this.props.dispatch(asyncRegisterUser(this.state.testUser));
+    }
+
+    handleLogin = () => {
+        this.props.dispatch(asyncLogin(this.state.testUser));
     }
 
     render() {
         return (
             <React.Fragment>
                 <p>This is a test component</p>
-                <button onClick={this.handleClick}>Register</button>
+                <button onClick={this.handleRegister}>Register</button>
+                <button onClick={this.handleLogin}>Login</button>
             </React.Fragment>
         )
     }
