@@ -1,15 +1,10 @@
 // Action Types
 
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
-export const ADD_LIKE = "ADD_LIKE"
+export const ADD_LIKE = "ADD_LIKE";
 export const GET_MESSAGES = 'GET_MESSAGES'
 
 // SYNC
-
-    // Users
-
-
-    // Messages
 
 // not sure if we actually need an action for this, because what other component needs to know about it?
 export const addMessage = text => ({
@@ -17,13 +12,13 @@ export const addMessage = text => ({
     text
 });
 
-export const getMessages = ({ messages }) => ({
+export const getMessages = messages => ({
     type: GET_MESSAGES,
     messages
 })
 
 
-    // Likes
+// Likes
 
 export const addLike = messageId => ({
     type: ADD_LIKE,
@@ -57,7 +52,7 @@ export const asyncPostMessage = text => dispatch => {
 
 export const asyncGetMessages = () => dispatch => {
     console.log('getting all messages');
-    fetch( 'https://kwitter-api.herokuapp.com/messages')
+    fetch('https://kwitter-api.herokuapp.com/messages')
     .then( ( response ) => {
         if ( response.ok ) {
           return response.json();

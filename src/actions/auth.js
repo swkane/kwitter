@@ -1,6 +1,6 @@
 // Action Types
 
-export const SET_TOKEN = 'SET_TOKEnN'
+export const SET_TOKEN = 'SET_TOKEN'
 
 // SYNC
 
