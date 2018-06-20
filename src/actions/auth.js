@@ -11,6 +11,7 @@ export const setToken = token => ({
 // ASYNC
 
 export const asyncRegisterUser = ({ username, password, displayName }) => dispatch => {
+    console.log(`registering ${username}`)
     fetch( 'https://kwitter-api.herokuapp.com/auth/register', {
         method: "POST",
         headers: new Headers( {
