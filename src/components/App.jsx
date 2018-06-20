@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import TestComponent from './TestComponent';
 
-class App extends Component {
+// I use the testcomponent to quickly test redux actions etc
+
+class App extends React.Component {
   render() {
+
     return (
-      <h1>We are Kwitters, bum, babum, bumbum, bumbum.</h1>
+      <TestComponent />
     );
   }
 }
