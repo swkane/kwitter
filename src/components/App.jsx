@@ -5,7 +5,6 @@ import TestComponent from './TestComponent';
 
 class App extends React.Component {
   render() {
-
     return (
       <TestComponent />
     );

@@ -1,7 +1,11 @@
+// Action Types
+
+export const SET_TOKEN = 'SET_TOKEN'
+
 // SYNC
 
 export const setToken = token => ({
-    type: 'SET_TOKEN',
+    type: SET_TOKEN,
     token
 });
 
