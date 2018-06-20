@@ -28,26 +28,29 @@ export const addLike = messageId => ({
 
 // ASYNC
 
-export const asyncPostMessage = text => dispatch => {
+export const asyncPostMessage = text => ( dispatch, getState ) => {
     console.log(`posting ${ text }`);
-    fetch( 'https://kwitter-api.herokuapp.com/messages', {
-        method: "POST",
-        headers: new Headers( {
-          "Content-Type": "application/json",
-        } ),
-        body: JSON.stringify( { text } ),
-      } )
-    .then( ( response ) => {
-        if ( response.ok ) {
-          return response.json();
-        }    
-      } )
-    .then( () => {
-        dispatch(asyncGetMessages());
-    })
-    .catch( ( error ) => {
-        console.error(error);
-      } ); 
+    const { token } = getState();
+    token &&
+        fetch( 'https://kwitter-api.herokuapp.com/messages', {
+            method: "POST",
+            headers: new Headers( {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+            } ),
+            body: JSON.stringify( { text } ),
+        } )
+        .then( ( response ) => {
+            if ( response.ok ) {
+            return response.json();
+            }    
+        } )
+        .then( () => {
+            dispatch(asyncGetMessages());
+        })
+        .catch( ( error ) => {
+            console.error(error);
+        } ); 
 };
 
 export const asyncGetMessages = () => dispatch => {
