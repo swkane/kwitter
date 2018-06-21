@@ -7,9 +7,8 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import 'semantic-ui-css/semantic.min.css';
-import {BrowserRouter, Switch, Route } from 'react-router-dom';
-import LoginRegister from './components/LoginRegister';
-import Messages from './components/Messages';
+import {BrowserRouter } from 'react-router-dom';
+import App from './components/App';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,10 +22,7 @@ const store = createStore(
 ReactDOM.render(
 <BrowserRouter>
     <Provider store={store}>
-        <Switch>
-            <Route exact path="/" component={LoginRegister}/>
-            <Route path="/messages" component={Messages}/>
-        </Switch>
+        <App />
     </Provider>
 </BrowserRouter>
 

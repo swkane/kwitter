@@ -2,10 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Container, Form, Button, Feed, Icon} from 'semantic-ui-react'
 import { addMessage, addLike } from '../actions/messages';
+import { asyncGetMessages } from '../actions/messages';
 
 class Messages extends React.Component {
     state = {
         message: '',
+    }
+
+    componentDidMount() {
+        this.props.dispatch(asyncGetMessages());
     }
 
     handleMessage = (e) => {
@@ -26,8 +31,8 @@ class Messages extends React.Component {
 
     render(){
         let count = 150 - this.state.message.length;
-        const {data} = this.props;
-        console.log(data);
+        const {messages} = this.props;
+        console.log(messages)
         return (
             <div>
                 <Container>
@@ -36,15 +41,15 @@ class Messages extends React.Component {
                         <div>You have {count} characters remaining</div>
                         <Button color="blue" onClick={this.submitMessage}>Share</Button>
                     </Form>
-                    { data.messages.messages.map( (message, i) => (
+                    { messages.map( (message, i) => (
                         <Feed key={i} size="large">
                             <Feed.Event>
                                 <Feed.Content>
                                     <Feed.Summary>
-                                        <Feed.User>{message.author}</Feed.User>
-                                        <Feed.Date>x minutes ago</Feed.Date>
+                                        <Feed.User>{message.id}</Feed.User>
+                                        <Feed.Date>{message.updatedAt}</Feed.Date>
                                     </Feed.Summary>
-                                    <Feed.Extra text>{message}</Feed.Extra>
+                                    <Feed.Extra text>{message.text}</Feed.Extra>
                                     <Feed.Meta>
                                         <Feed.Like>
                                             <Icon onClick={this.handleLikes} name="like" />
@@ -63,7 +68,7 @@ class Messages extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        data: state,
+        messages: state.messages,
         likes: state.likes
     }
 }
