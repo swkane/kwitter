@@ -2,18 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 import 'semantic-ui-css/semantic.min.css';
 import {BrowserRouter, Switch, Route } from 'react-router-dom';
 import LoginRegister from './components/LoginRegister';
 import Messages from './components/Messages';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import tweet from './reducers';
+import rootReducer from './reducers';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-    tweet,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+    rootReducer,
+    composeEnhancers(
+        applyMiddleware(thunk)
+    )
+);
 
 ReactDOM.render(
 <BrowserRouter>
