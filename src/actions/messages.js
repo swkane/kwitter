@@ -7,9 +7,9 @@ export const GET_MESSAGES = 'GET_MESSAGES'
 // SYNC
 
 // not sure if we actually need an action for this, because what other component needs to know about it?
-export const addMessage = text => ({
+export const addMessage = message => ({
     type: CREATE_MESSAGE,
-    text
+    payload: message
 });
 
 export const getMessages = messages => ({
