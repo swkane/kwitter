@@ -4,11 +4,14 @@ import { Switch, Route } from 'react-router-dom';
 import LoginRegister from './LoginRegister';
 import Messages from './Messages';
 import TestComponent from './TestComponent';
-
+import { asyncGetMessages } from '../actions/messages';
 
 // I use the testcomponent to quickly test redux actions etc
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(asyncGetMessages());
+  };
   
   render() {
     return (
@@ -21,4 +24,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect()(App);

@@ -1,17 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import {Container, Form, Button, Feed, Icon} from 'semantic-ui-react'
 import { addMessage, addLike } from '../actions/messages';
-import { asyncGetMessages } from '../actions/messages';
+
 
 class Messages extends React.Component {
     state = {
         message: '',
     }
 
-    componentDidMount() {
-        this.props.dispatch(asyncGetMessages());
-    }
+    
 
     handleMessage = (e) => {
         this.setState({
@@ -72,4 +71,4 @@ const mapStateToProps = state => {
         likes: state.likes
     }
 }
-export default connect(mapStateToProps)(Messages);
+export default withRouter(connect(mapStateToProps)(Messages));
