@@ -1,7 +1,7 @@
 import React from 'react';
 import { asyncRegisterUser, asyncLogin } from '../actions/auth';
 import { connect } from 'react-redux';
-import { asyncGetMessages } from '../actions/messages';
+import { asyncGetMessages, asyncPostMessage } from '../actions/messages';
 
 class TestComponent extends React.Component {
     state = {
@@ -9,19 +9,27 @@ class TestComponent extends React.Component {
             username: 'sam',
             password: 'sam',
             displayName: 'sam'
-        }
+        },
+        text: 'This is a placeholder message'
     }
 
     handleRegister = () => {
-        this.props.dispatch(asyncRegisterUser(this.state.testUser));
+        const { testUser } = this.state;
+        this.props.dispatch(asyncRegisterUser(testUser));
     }
 
     handleLogin = () => {
-        this.props.dispatch(asyncLogin(this.state.testUser));
+        const { testUser } = this.state;
+        this.props.dispatch(asyncLogin(testUser));
     }
 
     handleGetMessages = () => {
         this.props.dispatch(asyncGetMessages());
+    }
+
+    handlePostMessage = () => {
+        const { text } = this.state;
+        this.props.dispatch(asyncPostMessage(text));
     }
 
     render() {
@@ -31,6 +39,7 @@ class TestComponent extends React.Component {
                 <button onClick={this.handleRegister}>Register</button>
                 <button onClick={this.handleLogin}>Login</button>
                 <button onClick={this.handleGetMessages}>Get Messages</button>
+                <button onClick={this.handlePostMessage}>Post Message</button>
             </React.Fragment>
         )
     }
