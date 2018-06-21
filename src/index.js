@@ -9,6 +9,7 @@ import rootReducer from './reducers';
 import 'semantic-ui-css/semantic.min.css';
 import {BrowserRouter } from 'react-router-dom';
 import App from './components/App';
+import BaseLayout from './components/BaseLayout';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,7 +24,9 @@ const store = createStore(
 ReactDOM.render(
 <BrowserRouter>
     <Provider store={store}>
-        <App />
+        <BaseLayout>
+            <App />
+        </BaseLayout>
     </Provider>
 </BrowserRouter>
 

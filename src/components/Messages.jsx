@@ -43,6 +43,9 @@ class Messages extends React.Component {
                     { messages.map( (message, i) => (
                         <Feed key={i} size="large">
                             <Feed.Event>
+                                <Feed.Label>
+                                    <img src='/assets/images/avatar/small/elliot.jpg' />
+                                </Feed.Label>
                                 <Feed.Content>
                                     <Feed.Summary>
                                         <Feed.User>{message.id}</Feed.User>
