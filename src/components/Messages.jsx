@@ -1,14 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Container, Form, Button, Feed, Icon} from 'semantic-ui-react'
-import { addMessage, addLike } from '../actions';
+import { addMessage, addLike } from '../actions/messages';
 
 class Messages extends React.Component {
     state = {
         message: '',
-        messages: [],
-        likes: 0,
-        author: "Sam"
     }
 
     handleMessage = (e) => {
@@ -29,7 +26,8 @@ class Messages extends React.Component {
 
     render(){
         let count = 150 - this.state.message.length;
-        const {messages} = this.props;
+        const {data} = this.props;
+        console.log(data);
         return (
             <div>
                 <Container>
@@ -38,12 +36,12 @@ class Messages extends React.Component {
                         <div>You have {count} characters remaining</div>
                         <Button color="blue" onClick={this.submitMessage}>Share</Button>
                     </Form>
-                    { messages.map( (message, i) => (
+                    { data.messages.messages.map( (message, i) => (
                         <Feed key={i} size="large">
                             <Feed.Event>
                                 <Feed.Content>
                                     <Feed.Summary>
-                                        <Feed.User>{this.state.author}</Feed.User>
+                                        <Feed.User>{message.author}</Feed.User>
                                         <Feed.Date>x minutes ago</Feed.Date>
                                     </Feed.Summary>
                                     <Feed.Extra text>{message}</Feed.Extra>
@@ -65,7 +63,7 @@ class Messages extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        messages: state.messages,
+        data: state,
         likes: state.likes
     }
 }

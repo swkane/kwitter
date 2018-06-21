@@ -1,11 +1,9 @@
 import { CREATE_MESSAGE , ADD_LIKE, GET_MESSAGES } from '../actions/messages';
 
-// const initialState = {
-//         message: '',
-//         messages: [],
-//         likes: 0,
-//         author: "Sam"
-// }
+const initialState = {
+        messages: [],
+        likes: 0,
+}
 
 export const messages = (state = [], action) => {
     switch(action.type) {
