@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import {Container, Form, Button, Feed, Icon} from 'semantic-ui-react'
 import { addMessage, addLike } from '../actions/messages';
+import {image} from '../../src/semanticAssets';
 
 
 class Messages extends React.Component {
@@ -44,7 +45,7 @@ class Messages extends React.Component {
                         <Feed key={i} size="large">
                             <Feed.Event>
                                 <Feed.Label>
-                                    <img src='/assets/images/avatar/small/elliot.jpg' />
+                                    <img src={image} />
                                 </Feed.Label>
                                 <Feed.Content>
                                     <Feed.Summary>
