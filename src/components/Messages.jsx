@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { withRouter } from 'react-router-dom';
 import {Container, Form, Button, Feed, Icon} from 'semantic-ui-react'
 import { addMessage, addLike } from '../actions/messages';
 import {image} from '../../src/semanticAssets';
@@ -45,7 +44,7 @@ class Messages extends React.Component {
                         <Feed key={i} size="large">
                             <Feed.Event>
                                 <Feed.Label>
-                                    <img src={image} />
+                                    <img src={image} alt="image" />
                                 </Feed.Label>
                                 <Feed.Content>
                                     <Feed.Summary>
@@ -56,7 +55,7 @@ class Messages extends React.Component {
                                     <Feed.Meta>
                                         <Feed.Like>
                                             <Icon onClick={this.handleLikes} name="like" />
-                                            {this.props.likes} Likes
+                                            {message.likes.length}
                                         </Feed.Like>
                                     </Feed.Meta>
                                 </Feed.Content>
@@ -75,4 +74,4 @@ const mapStateToProps = state => {
         likes: state.likes
     }
 }
-export default withRouter(connect(mapStateToProps)(Messages));
+export default connect(mapStateToProps)(Messages);
