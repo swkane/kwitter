@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { asyncRegisterUser, asyncLogin } from '../actions/auth';
 
@@ -89,4 +88,4 @@ class LoginRegister extends React.Component {
     }
 }
 
-export default withRouter(connect()(LoginRegister));
+export default connect()(LoginRegister);
