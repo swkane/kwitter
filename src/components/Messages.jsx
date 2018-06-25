@@ -35,11 +35,13 @@ class Messages extends React.Component {
         return (
             <div>
                 <Container>
-                    <Form>
-                        <Form.TextArea rows="5" maxLength="150" value={this.state.message} onChange={this.handleMessage} />
-                        <div>You have {count} characters remaining</div>
-                        <Button color="blue" onClick={this.submitMessage}>Share</Button>
-                    </Form>
+                    <Segment ui secondary segment>
+                        <Form>
+                            <Form.TextArea rows="5" maxLength="150" value={this.state.message} onChange={this.handleMessage} />
+                            <div>You have {count} characters remaining</div>
+                            <Button color="blue" onClick={this.submitMessage}>Share</Button>
+                        </Form>
+                    </Segment>
                     { messages.map( (message, i) => (
                         <Segment>
                             <Feed key={i} size="large">
